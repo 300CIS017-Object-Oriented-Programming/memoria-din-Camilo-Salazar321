@@ -119,6 +119,10 @@ void menu(Administracion &administracionMenu)
 
 int main()
 {
+    int valor=10;
+    int *p=&valor;//Así, p almacena la dirección de la memoria, y *p ayuda a acceder al valor de la variable valor
+    cout << "Dirección de valor: "<< p << endl;
+    cout << "Valor a través de p: "<< *p << endl;
 
     Administracion administracion; // Instanciado con el stack
     menu(administracion);

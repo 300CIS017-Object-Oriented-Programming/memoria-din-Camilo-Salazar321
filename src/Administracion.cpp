@@ -18,16 +18,29 @@ Administracion::Administracion() {
  */
 void Administracion::inicializarDatos() {
     Propietario *persona1 = new Propietario();
+    std::cout <<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propietario *persona2 = new Propietario();
+    std::cout<<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propietario *persona3 = new Propietario();
+    std::cout<<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propietario *persona4 = new Propietario();
+    std::cout<<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propiedad *prop1 = new Propiedad();
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     Propiedad *prop2 = new Propiedad();
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     Propiedad *prop3 = new Propiedad();
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     Propiedad *prop4 = new Propiedad(); // Automaticamente al constructor x defecto
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     CuartoUtil *cuarto1 = new CuartoUtil();
+    std::cout<<"Objeto de tipo Cuarto Util creado exitosamente!!"<<std::endl;
     CuartoUtil *cuarto2 = new CuartoUtil();
+    std::cout<<"Objeto de tipo Cuarto Util creado exitosamente!!"<<std::endl;
     CuartoUtil *cuarto3 = new CuartoUtil();
+    std::cout<<"Objeto de tipo Cuarto Util creado exitosamente!!"<<std::endl;
+
+
 
     //Inicializar cuartos utiles
     vector<CuartoUtil *> cuartosUtiles;
@@ -101,6 +114,12 @@ void Administracion::inicializarDatos() {
     propietarios.push_back(persona2);
     propietarios.push_back(persona3);
     propietarios.push_back(persona4);
+
+    //Imprimir direcciones de memoria de persona1 y prop1.
+    cout << "Dirección de memoria de persona1: " << &persona1 << endl;
+    cout << "Dirección de memoria de prop1: " << prop1 << endl;
+    cout << "Dirección de memoria de la propiedad dentro de persona1: " << persona1->getPropiedad() << endl;
+
 }
 
 void Administracion::agregarPropiedad() {
