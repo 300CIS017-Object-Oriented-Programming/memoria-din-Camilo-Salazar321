@@ -243,6 +243,53 @@ void Administracion::relacionarPropietarioPropiedad() {
     }
 }
 
+void Administracion::generarReportePropiedad() {
+    std::cout<<"REPORTE DE ADMINISTRACION \n"<<std::endl;
+    int totalAdministracion=0;
+    for (int i=0;i<propietarios.size();i++) {
+        std::cout<<"------------------------------------------"<<std::endl;
+        std::cout<<"Propietario: " << propietarios[i]->getNombre()<< " ID: "<< propietarios[i]->getIdentificacion()<<"\n"<<std::endl;
+        std::cout<<"Propiedad: "<<std::endl;
+        std::cout<< " ID: " <<propietarios[i]->getPropiedad()->getNumIdentificacion()<< " Piso: " <<propietarios[i]->getPropiedad()->getPiso()<<std::endl;
+        std::cout<< " Area: " <<propietarios[i]->getPropiedad()->getAreaPropiedad()<< " m^2 \n" <<std::endl;
+
+        if (propietarios[i]->getPropiedad()->isHayParqueadero()==true) {
+            std::cout<< "Tiene parquadero: Si \n"<<std::endl;
+        }
+        else
+            std::cout<< "Tiene parquadero: No \n"<<std::endl;
+        if (propietarios[i]->getPropiedad()->getCuartoUtil() != nullptr) {
+            if (propietarios[i]->getPropiedad()->getCuartoUtil()->isEstaTerminado()==true) {
+                std::cout<< "Cuarto Util: Terminado \n"<<std::endl;
+            }
+            else
+                std::cout<< "Cuarto Util: No terminado \n"<<std::endl;
+        }
+        int total=0;
+
+        if (propietarios[i]->getPropiedad()->getAreaPropiedad()>150) {
+            total=cobroAscensor*propietarios[i]->getPropiedad()->getPiso() + (costoBase*recargo+costoBase);
+        }
+        else
+            total=cobroAscensor*propietarios[i]->getPropiedad()->getPiso()+costoBase;
+
+        if (propietarios[i]->getPropiedad()->getCuartoUtil() != nullptr){
+
+            if (propietarios[i]->getPropiedad()->getCuartoUtil()->isEstaTerminado()==false) {
+                total=total-total*0.01;
+
+            }
+        }
+        totalAdministracion+=total;
+
+    }
+    std::cout<<"Total administracion: "<<totalAdministracion<<std::endl;
+
+
+}
+
+
+
 
 void Administracion::imprimirUnPropietario(double id) {
     bool found = false;

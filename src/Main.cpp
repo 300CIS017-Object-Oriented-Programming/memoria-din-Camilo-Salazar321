@@ -69,6 +69,7 @@ void mostrarMenuAdministracion(Administracion &administracionMenuAdmin)
     cout << "1. Recaudar administracion \n";
     cout << "2. Asociar propietario-propiedad \n";
     cout << "3. Agregar propiedad \n";
+    cout << "4. Generar reporte \n";
     cout << "-1. Volver\n";
     cin >> opc;
 
@@ -84,6 +85,9 @@ void mostrarMenuAdministracion(Administracion &administracionMenuAdmin)
 
     case 3:
         administracionMenuAdmin.agregarPropiedad();
+        break;
+    case 4:
+        administracionMenuAdmin.generarReportePropiedad();
         break;
 
     default:
