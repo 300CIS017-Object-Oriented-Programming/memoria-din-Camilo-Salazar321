@@ -288,7 +288,46 @@ void Administracion::generarReportePropiedad() {
 
 }
 
+void Administracion::venderCuartoUtil() {
 
+    int idVendedor;
+    int idComprador;
+
+    std::cout<<"Digite el numero de identificacion del vendedor"<<std::endl;
+    std::cin>>idVendedor;
+    std::cout<<"Digite el numero de identificacion del comprador"<<std::endl;
+    std::cin>>idComprador;
+
+    for (int i=0;i<propietarios.size();i++) {
+
+        if (propietarios[i]->getIdentificacion()==idVendedor) {
+
+            if (propietarios[i]->getPropiedad()->getCuartoUtil()!=nullptr) {
+
+                for (int k=0;k<propietarios.size();k++) {
+                    if (propietarios[k]->getIdentificacion()==idComprador) {
+
+                        if (propietarios[k]->getPropiedad()->getCuartoUtil()==nullptr) {
+                            propietarios[k]->getPropiedad()->setCuartoUtil(propietarios[i]->getPropiedad()->getCuartoUtil());
+                            propietarios[i]->getPropiedad()->setCuartoUtil(nullptr);
+                            std::cout << "Venta realizada con éxito. El cuarto útil ha sido transferido del propietario con ID "
+                                      << idVendedor << " al propietario con ID " << idComprador << "." << std::endl;
+                            return;
+
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
 
 
 void Administracion::imprimirUnPropietario(double id) {
