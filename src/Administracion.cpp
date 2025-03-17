@@ -18,16 +18,29 @@ Administracion::Administracion() {
  */
 void Administracion::inicializarDatos() {
     Propietario *persona1 = new Propietario();
+    std::cout <<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propietario *persona2 = new Propietario();
+    std::cout<<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propietario *persona3 = new Propietario();
+    std::cout<<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propietario *persona4 = new Propietario();
+    std::cout<<"Objeto de tipo Propietario creado exitosamente!!"<<std::endl;
     Propiedad *prop1 = new Propiedad();
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     Propiedad *prop2 = new Propiedad();
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     Propiedad *prop3 = new Propiedad();
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     Propiedad *prop4 = new Propiedad(); // Automaticamente al constructor x defecto
+    std::cout<<"Objeto de tipo Propiedad creado exitosamente!!"<<std::endl;
     CuartoUtil *cuarto1 = new CuartoUtil();
+    std::cout<<"Objeto de tipo Cuarto Util creado exitosamente!!"<<std::endl;
     CuartoUtil *cuarto2 = new CuartoUtil();
+    std::cout<<"Objeto de tipo Cuarto Util creado exitosamente!!"<<std::endl;
     CuartoUtil *cuarto3 = new CuartoUtil();
+    std::cout<<"Objeto de tipo Cuarto Util creado exitosamente!!"<<std::endl;
+
+
 
     //Inicializar cuartos utiles
     vector<CuartoUtil *> cuartosUtiles;
@@ -101,6 +114,12 @@ void Administracion::inicializarDatos() {
     propietarios.push_back(persona2);
     propietarios.push_back(persona3);
     propietarios.push_back(persona4);
+
+    //Imprimir direcciones de memoria de persona1 y prop1.
+    cout << "Dirección de memoria de persona1: " << &persona1 << endl;
+    cout << "Dirección de memoria de prop1: " << prop1 << endl;
+    cout << "Dirección de memoria de la propiedad dentro de persona1: " << persona1->getPropiedad() << endl;
+
 }
 
 void Administracion::agregarPropiedad() {
@@ -222,6 +241,92 @@ void Administracion::relacionarPropietarioPropiedad() {
         cout << "Propietario " << propietarios[idxTempPropietario]->getNombre() << " asociado con propiedad "
                 << propiedadTemp->getNumIdentificacion() << endl;
     }
+}
+
+void Administracion::generarReportePropiedad() {
+    std::cout<<"REPORTE DE ADMINISTRACION \n"<<std::endl;
+    int totalAdministracion=0;
+    for (int i=0;i<propietarios.size();i++) {
+        std::cout<<"------------------------------------------"<<std::endl;
+        std::cout<<"Propietario: " << propietarios[i]->getNombre()<< " ID: "<< propietarios[i]->getIdentificacion()<<"\n"<<std::endl;
+        std::cout<<"Propiedad: "<<std::endl;
+        std::cout<< " ID: " <<propietarios[i]->getPropiedad()->getNumIdentificacion()<< " Piso: " <<propietarios[i]->getPropiedad()->getPiso()<<std::endl;
+        std::cout<< " Area: " <<propietarios[i]->getPropiedad()->getAreaPropiedad()<< " m^2 \n" <<std::endl;
+
+        if (propietarios[i]->getPropiedad()->isHayParqueadero()==true) {
+            std::cout<< "Tiene parquadero: Si \n"<<std::endl;
+        }
+        else
+            std::cout<< "Tiene parquadero: No \n"<<std::endl;
+        if (propietarios[i]->getPropiedad()->getCuartoUtil() != nullptr) {
+            if (propietarios[i]->getPropiedad()->getCuartoUtil()->isEstaTerminado()==true) {
+                std::cout<< "Cuarto Util: Terminado \n"<<std::endl;
+            }
+            else
+                std::cout<< "Cuarto Util: No terminado \n"<<std::endl;
+        }
+        int total=0;
+
+        if (propietarios[i]->getPropiedad()->getAreaPropiedad()>150) {
+            total=cobroAscensor*propietarios[i]->getPropiedad()->getPiso() + (costoBase*recargo+costoBase);
+        }
+        else
+            total=cobroAscensor*propietarios[i]->getPropiedad()->getPiso()+costoBase;
+
+        if (propietarios[i]->getPropiedad()->getCuartoUtil() != nullptr){
+
+            if (propietarios[i]->getPropiedad()->getCuartoUtil()->isEstaTerminado()==false) {
+                total=total-total*0.01;
+
+            }
+        }
+        totalAdministracion+=total;
+
+    }
+    std::cout<<"Total administracion: "<<totalAdministracion<<std::endl;
+
+
+}
+
+void Administracion::venderCuartoUtil() {
+
+    int idVendedor;
+    int idComprador;
+
+    std::cout<<"Digite el numero de identificacion del vendedor"<<std::endl;
+    std::cin>>idVendedor;
+    std::cout<<"Digite el numero de identificacion del comprador"<<std::endl;
+    std::cin>>idComprador;
+
+    for (int i=0;i<propietarios.size();i++) {
+
+        if (propietarios[i]->getIdentificacion()==idVendedor) {
+
+            if (propietarios[i]->getPropiedad()->getCuartoUtil()!=nullptr) {
+
+                for (int k=0;k<propietarios.size();k++) {
+                    if (propietarios[k]->getIdentificacion()==idComprador) {
+
+                        if (propietarios[k]->getPropiedad()->getCuartoUtil()==nullptr) {
+                            propietarios[k]->getPropiedad()->setCuartoUtil(propietarios[i]->getPropiedad()->getCuartoUtil());
+                            propietarios[i]->getPropiedad()->setCuartoUtil(nullptr);
+                            std::cout << "Venta realizada con éxito. El cuarto útil ha sido transferido del propietario con ID "
+                                      << idVendedor << " al propietario con ID " << idComprador << "." << std::endl;
+                            return;
+
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+    }
+
 }
 
 

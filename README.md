@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/tr15q9k2)
 ## Torres de Niza - solución completa
 
 Este documento te guiará en el desarrollo del sistema de administración de propiedades del conjunto **Torres de Niza**, aplicando conceptos clave de **POO en C++**. Aprenderás sobre la interacción entre clases, gestión dinámica de memoria, y cómo optimizar el uso de **apuntadores y referencias**.
@@ -478,6 +479,12 @@ Total administración recaudada: 850000
 
 ### 🔥Ejercicio  ¿Qué sigue?
 📌 Implementa otra mejora en el proyecto, documenta en este README la nueva funcionalidad, pruébala y compártela
+
+**Nueva funcionalidad: Vender cuarto útil**
+
+Esta funcionalidad tiene como propósito permitir que un propietario que tenga una propiedad que cuente con cuarto útil, le pueda vender el cuarto útil que posee a otro propietario que NO tenga cuarto útil en su propiedad.
+
+El nuevo método de la clase Administración se encuentra con la función venderCuartoUtil(), la cual le pide al administrador los números de identificación tanto del vendedor como del comprador del cuarto útil con el propósito de utilizar estos datos para identificarlos dentro de la lista de propietarios. Posterior a la identificación y comprobación de condiciones de la venta del cuarto útil mencionadas previamente, se realiza el "traspaso" del cuarto útil de un propietario a otro.
 
 ## UML
 <details>

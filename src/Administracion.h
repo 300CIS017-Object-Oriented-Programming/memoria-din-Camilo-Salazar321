@@ -45,6 +45,12 @@ public:
     void agregarPropietario();
 
     void relacionarPropietarioPropiedad();
+
+    void generarReportePropiedad();
+
+    void venderCuartoUtil();
+
+
 };
 
 #endif
